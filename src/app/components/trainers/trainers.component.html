@@ -1,0 +1,26 @@
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Profession</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let trainer of trainers">
+        <td>
+          <input type="text" class="form-control" [(ngModel)]="trainer.name">
+        </td>
+        <td>
+          <select name="profession" id="profession" class="form-control">
+            <option value="profession.name" *ngFor="let profession of professions">{{ profession.name }}</option>
+          </select>
+        </td>
+        <td>
+          <button type="button" class="btn btn-outline-info">Edit</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
