@@ -2,23 +2,43 @@
   <table class="table">
     <thead>
       <tr>
-        <th>Name</th>
+        <th>First Name</th>
+        <th>Last Name</th>
         <th>Profession</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let trainer of trainers">
+      <tr>
         <td>
-          <input type="text" class="form-control" [(ngModel)]="trainer.name">
+          <input type="text" class="form-control" [(ngModel)]="newTrainer.first_name">
         </td>
         <td>
-          <select name="profession" id="profession" class="form-control">
-            <option value="profession.name" *ngFor="let profession of professions">{{ profession.name }}</option>
+          <input type="text" class="form-control" [(ngModel)]="newTrainer.last_name">
+        </td>
+        <td>
+          <select name="profession" id="profession" class="form-control" [(ngModel)]="newTrainer.profession">
+            <option value="profession.title" *ngFor="let profession of professions">{{ profession.title }}</option>
           </select>
         </td>
         <td>
-          <button type="button" class="btn btn-outline-info">Edit</button>
+          <button type="button" class="btn btn-outline-info" (click)="createTrainer()">Add</button>
+        </td>
+      </tr>
+      <tr *ngFor="let trainer of trainers">
+        <td>
+          <input type="text" class="form-control" [(ngModel)]="trainer.first_name">
+        </td>
+        <td>
+          <input type="text" class="form-control" [(ngModel)]="trainer.last_name">
+        </td>
+        <td>
+          <select name="profession" id="profession" class="form-control">
+            <option (value)="profession.title" *ngFor="let profession of professions">{{ profession.title }}</option>
+          </select>
+        </td>
+        <td>
+          <button type="button" class="btn btn-outline-info" (click)="updateTrainer(trainer)">Update</button>
         </td>
       </tr>
     </tbody>

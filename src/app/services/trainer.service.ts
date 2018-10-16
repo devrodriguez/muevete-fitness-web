@@ -9,10 +9,15 @@ export class TrainerService {
   constructor(private http: HttpClient) { }
 
   getTrainers() {
-    return this.http.get('http://localhost:8000/trainers');
+    return this.http.get('http://192.168.6.253:8000/trainers');
   }
 
-  getProfessions() {
-    return this.http.get('http://localhost:8000/professions');
+  createTrainer(trainer: any) {
+    return this.http.post(`http://192.168.6.253:8000/trainers`, trainer);
   }
+
+  updateTrainer(trainer: any) {
+    return this.http.put(`http://192.168.6.253:8000/trainers/${trainer.id}`, trainer);
+  }
+
 }
