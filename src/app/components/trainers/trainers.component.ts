@@ -9,7 +9,7 @@ import { ProfessionService } from 'src/app/services/profession.service';
 })
 export class TrainersComponent implements OnInit {
   
-  newTrainer: any = new Object();
+  newTrainer: any = { images: [] };
   trainers: any = new Array();
   professions: any = new Array();
 
@@ -33,8 +33,31 @@ export class TrainersComponent implements OnInit {
     });
   }
 
+  getFile(event) {
+    var reader = new FileReader();
+    var that = this;
+    var files = event.target.files;
+    
+    reader.onloadend = function() {
+      that.newTrainer.image = reader.result;
+      console.log(reader.result);
+    }
+  
+    reader.readAsDataURL(files[0])
+  }
+
+  uploadImage(event) {
+    const fd = new FormData();
+
+    fd.append('image', this.newTrainer.image, 'myfile.png');
+
+    this.trainerService.uploadFile(fd).subscribe(res => {
+      console.log(res);
+    })
+  }
+
   createTrainer() {
-    console.log(this.newTrainer);
+    
     this.trainerService.createTrainer(this.newTrainer).subscribe(res => {
       console.log(res);
     });

@@ -20,4 +20,7 @@ export class TrainerService {
     return this.http.put(`http://192.168.6.253:8000/trainers/${trainer.id}`, trainer);
   }
 
+  uploadFile(fd:any) {
+    return this.http.post('http://192.168.6.253:8000/trainers/upload-file', fd);
+  }
 }
