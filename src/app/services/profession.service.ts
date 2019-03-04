@@ -6,9 +6,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ProfessionService {
 
+  ip: string = "192.168.56.1:8000";
+
   constructor(private http: HttpClient) { }
 
   getProfessions() {
-    return this.http.get(`http://192.168.6.253:8000/professions`)
+    return this.http.get(`http://${this.ip}/professions`)
   }
 }

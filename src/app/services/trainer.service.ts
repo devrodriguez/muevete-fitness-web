@@ -6,21 +6,23 @@ import { HttpClient } from '@angular/common/http';
 })
 export class TrainerService {
 
+  ip: string = "192.168.56.1:8000";
+
   constructor(private http: HttpClient) { }
 
   getTrainers() {
-    return this.http.get('http://192.168.6.253:8000/trainers');
+    return this.http.get(`http://${this.ip}/trainers`);
   }
 
   createTrainer(trainer: any) {
-    return this.http.post(`http://192.168.6.253:8000/trainers`, trainer);
+    return this.http.post(`http://${this.ip}/trainers`, trainer);
   }
 
   updateTrainer(trainer: any) {
-    return this.http.put(`http://192.168.6.253:8000/trainers/${trainer.id}`, trainer);
+    return this.http.put(`http://${this.ip}/trainers/${trainer.id}`, trainer);
   }
 
   uploadFile(fd:any) {
-    return this.http.post('http://192.168.6.253:8000/trainers/upload-file', fd);
+    return this.http.post(`http://${this.ip}/trainers/upload-file`, fd);
   }
 }
