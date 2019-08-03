@@ -12,6 +12,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { TrainersComponent } from './components/trainers/trainers.component';
 import { ProductsComponent } from './components/products/products.component';
+import { RoutinesComponent } from './components/routines/routines.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { ProductsComponent } from './components/products/products.component';
     DashboardComponent,
     NavbarComponent,
     TrainersComponent,
-    ProductsComponent
+    ProductsComponent,
+    RoutinesComponent
   ],
   imports: [
     APP_ROUTING,
