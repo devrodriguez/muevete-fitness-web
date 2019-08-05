@@ -4,13 +4,13 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class ProfessionService {
+export class LoginService {
 
-  ip: string = "192.168.56.1:8000";
+  ip: string = "192.168.0.29:8000";
 
   constructor(private http:HttpClient) { }
 
-  getProfessions() {
-    return this.http.get(`http://${this.ip}/professions`)
+  login(user) {
+    return this.http.post(`http://${this.ip}/auth/login`, user);
   }
 }
