@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationStart } from '@angular/router';
+import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -12,14 +12,14 @@ export class NavbarComponent implements OnInit {
 
   constructor(private router: Router) {
     this.router.events.subscribe(evt => {
-      if(evt instanceof NavigationStart){
+      if(evt instanceof NavigationEnd){
         console.log(evt['url'])
-        if(evt['url'] == '/login') {
-          this.visible = false;     
+        if(evt['url'] != '/login'&& evt['url'] != '/') {
+          this.visible = true;     
         }
         else
         {
-          this.visible = true;
+          this.visible = false;
         }
       }
     });

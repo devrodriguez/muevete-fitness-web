@@ -1,24 +1,26 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { AppConfig } from '../app-config';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class RoutinesService {
 
-  ip: string = "192.168.0.29:8000";
+  private appConfig: AppConfig = new AppConfig();
 
   constructor(private http: HttpClient) { }
 
   getAllScheduled() {
-    return this.http.get(`http://${this.ip}/routines/reports/scheduled/0`);
+    return this.http.get(`${this.appConfig.apiUrl}/routines/reports/scheduled/0`);
   }
 
   getScheduled(id) {
-    return this.http.get(`http://${this.ip}/routines/reports/scheduled/${id}`);
+    return this.http.get(`${this.appConfig.apiUrl}/routines/reports/scheduled/${id}`);
   }
 
   getAllRoutines() {
-    return this.http.get(`http://${this.ip}/routines`);
+    return this.http.get(`${this.appConfig.apiUrl}/routines`);
   }
 }

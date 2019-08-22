@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { LoginService } from 'src/app/services/login.service';
 import { Router } from '@angular/router';
+import { UserModel } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-login',
@@ -10,12 +11,9 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  private user = {
-    email: '',
-    password: ''
-  };
+  private user: UserModel = new UserModel();
 
-  constructor(private router:Router, private loginService:LoginService) { }
+  constructor(private router: Router, private loginService: LoginService) { }
 
   ngOnInit() {
   }
