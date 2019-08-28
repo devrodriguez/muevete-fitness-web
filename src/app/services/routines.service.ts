@@ -16,8 +16,8 @@ export class RoutinesService {
     return this.http.get(`${this.appConfig.apiUrl}/routines/reports/scheduled/0`);
   }
 
-  getScheduled(id) {
-    return this.http.get(`${this.appConfig.apiUrl}/routines/reports/scheduled/${id}`);
+  getScheduled(id, date) {
+    return this.http.get(`${this.appConfig.apiUrl}/routines/reports/scheduled?id=${id}&date=${date}`);
   }
 
   getAllRoutines() {

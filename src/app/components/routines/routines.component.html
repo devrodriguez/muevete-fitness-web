@@ -1,14 +1,18 @@
+<app-navbar></app-navbar>
 <div class="container mt-3">
   <div class="row">
     <div class="col-sm-4">
-      <select name="routine" id="routine" class="form-control" [ngModel]="selectedRoutine" (change)="routineChange($event)">
+      <select name="routine" id="routine" class="form-control" [(ngModel)]="selectedRoutine" (change)="routineChange()">
         <option value="0">Todas</option>
         <option [value]="routine.id" *ngFor="let routine of routines">{{routine.name}}</option>
       </select>
     </div>
+    <div class="col-sm-3">
+      <input type="date" name="date" id="date" class="form-control" [(ngModel)]="selectedDate" (change)="dateChange()" >
+    </div>
   </div>
   <hr>
-  <table class="table">
+  <table class="table" *ngIf="schedules.length > 0">
     <thead>
       <tr>
         <th>Usuario</th>
@@ -34,4 +38,7 @@
       </tr>
     </tbody>
   </table>
+  <div class="alert alert-info" *ngIf="schedules.length == 0">
+    No hay clases programadas para esta fecha.
+  </div>
 </div>

@@ -15,4 +15,8 @@ export class LoginService {
   login(user: UserModel) {
     return this.http.post(`${this.appConfig.apiUrl}/auth/login`, user);
   }
+
+  passwordForgotten(user: UserModel) {
+    return this.http.post(`${this.appConfig.apiUrl}/auth/forgotten`, user);
+  }
 }

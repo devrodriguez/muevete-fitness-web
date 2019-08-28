@@ -11,25 +11,25 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faUser, faKey, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 
-import { MenuComponent } from './components/menu/menu.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { TrainersComponent } from './components/trainers/trainers.component';
 import { ProductsComponent } from './components/products/products.component';
 import { RoutinesComponent } from './components/routines/routines.component';
 import { LoginComponent } from './components/login/login.component';
+import { ForgottenComponent } from './components/forgotten/forgotten.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponent,
     DashboardComponent,
     NavbarComponent,
     TrainersComponent,
     ProductsComponent,
     RoutinesComponent,
-    LoginComponent
+    LoginComponent,
+    ForgottenComponent
   ],
   imports: [
     APP_ROUTING,

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RoutinesService } from 'src/app/services/routines.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-routines',
@@ -11,6 +12,7 @@ export class RoutinesComponent implements OnInit {
   schedules: any = [];
   routines: any = [];
   selectedRoutine: number = 0;
+  selectedDate: string = moment().format('YYYY-MM-DD');
 
   constructor(private routineService: RoutinesService) { }
 
@@ -19,21 +21,24 @@ export class RoutinesComponent implements OnInit {
     this.routineService.getAllRoutines().subscribe(data => {
       this.selectedRoutine = data[0]['id'];
       this.routines = data;
-      this.getScheduled(this.selectedRoutine);
+      this.getScheduled();
     });
 
   }
 
-  getScheduled(id: number) {
+  getScheduled() {
     //Get routines scheduled
-    this.routineService.getScheduled(id).subscribe(data => {
+    this.routineService.getScheduled(this.selectedRoutine, this.selectedDate).subscribe(data => {
       this.schedules = data;
     });
   }
 
   routineChange(event) {
-    console.log(event.target.value)
-    this.getScheduled(event.target.value);
+    this.getScheduled();
+  }
+
+  dateChange() {
+    this.getScheduled();
   }
 
 }

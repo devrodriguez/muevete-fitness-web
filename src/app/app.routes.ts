@@ -4,9 +4,11 @@ import { ProductsComponent } from './components/products/products.component';
 import { TrainersComponent } from './components/trainers/trainers.component';
 import { RoutinesComponent } from './components/routines/routines.component';
 import { LoginComponent } from './components/login/login.component';
+import { ForgottenComponent } from './components/forgotten/forgotten.component';
 
 const APP_ROUTES: Routes = [
     { path: 'login', component: LoginComponent },
+    { path: 'forgotten', component: ForgottenComponent },
     { path: 'home', component: DashboardComponent },
     { path: 'products', component: ProductsComponent },
     { path: 'trainers', component: TrainersComponent },
