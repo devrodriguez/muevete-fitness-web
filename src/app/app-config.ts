@@ -1,10 +1,10 @@
 import { environment } from "src/environments/environment";
 
 export class AppConfig {
-    private host: string = '192.168.0.29';
+    private host: string = '192.168.0.13';
     private port: string = ':8000';
 
-    public apiUrl: string ;
+    public apiUrl: string;
 
     constructor() {
         if(environment.production) {

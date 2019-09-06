@@ -23,4 +23,24 @@ export class RoutinesService {
   getAllRoutines() {
     return this.http.get(`${this.appConfig.apiUrl}/routines`);
   }
+
+  getAvailableDays() {
+    return this.http.get(`${this.appConfig.apiUrl}/availableDays`);
+  }
+
+  getAllSessions() {
+    return this.http.get(`${this.appConfig.apiUrl}/sessions`);
+  }
+
+  getRoutineSchedule() {
+    return this.http.get(`${this.appConfig.apiUrl}/routines/schedule`);
+  }
+
+  deleteRoutineSchedule(schedule: any) {
+    return this.http.post(`${this.appConfig.apiUrl}/routines/schedule/remove`, schedule);
+  }
+
+  createRoutineSchedule(schedule: any) {
+    return this.http.post(`${this.appConfig.apiUrl}/routines/schedule/create`, schedule);
+  }
 }

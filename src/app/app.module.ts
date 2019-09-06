@@ -9,7 +9,7 @@ import { APP_ROUTING } from './app.routes';
 import { AppComponent } from './app.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faUser, faKey, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faKey, faSignInAlt, faSave, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -18,7 +18,7 @@ import { ProductsComponent } from './components/products/products.component';
 import { RoutinesComponent } from './components/routines/routines.component';
 import { LoginComponent } from './components/login/login.component';
 import { ForgottenComponent } from './components/forgotten/forgotten.component';
-
+import { ConfigureRoutineComponent } from './components/routines/configure-routine/configure-routine.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,8 @@ import { ForgottenComponent } from './components/forgotten/forgotten.component';
     ProductsComponent,
     RoutinesComponent,
     LoginComponent,
-    ForgottenComponent
+    ForgottenComponent,
+    ConfigureRoutineComponent
   ],
   imports: [
     APP_ROUTING,
@@ -43,6 +44,6 @@ import { ForgottenComponent } from './components/forgotten/forgotten.component';
 })
 export class AppModule { 
   constructor() {
-    library.add(faUser, faKey, faSignInAlt);
+    library.add(faUser, faKey, faSignInAlt, faSave, faEdit, faTrash);
   }
 }

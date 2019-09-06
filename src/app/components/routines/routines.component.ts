@@ -18,7 +18,8 @@ export class RoutinesComponent implements OnInit {
 
   ngOnInit() {
     //Get all routines
-    this.routineService.getAllRoutines().subscribe(data => {
+    this.routineService.getAllRoutines()
+    .subscribe(data => {
       this.selectedRoutine = data[0]['id'];
       this.routines = data;
       this.getScheduled();
@@ -33,7 +34,7 @@ export class RoutinesComponent implements OnInit {
     });
   }
 
-  routineChange(event) {
+  routineChange() {
     this.getScheduled();
   }
 

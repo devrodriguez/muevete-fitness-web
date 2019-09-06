@@ -15,8 +15,14 @@
       <li class="nav-item">
         <a class="nav-link" routerLinkActive="active" [routerLink]="['products']">Products</a>
       </li>-->
-      <li class="nav-item">
-        <a class="nav-link" routerLinkActive="active" [routerLink]="['/routines']">Rutinas</a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Rutinas
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/routines']">Rutinas Programadas</a>
+          <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/configure-routine']">Configurar Rutinas</a>
+        </div>
       </li>
     </ul>
   </div>
