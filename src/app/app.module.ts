@@ -20,6 +20,10 @@ import { LoginComponent } from './components/login/login.component';
 import { ForgottenComponent } from './components/forgotten/forgotten.component';
 import { ConfigureRoutineComponent } from './components/routines/configure-routine/configure-routine.component';
 
+// Toastr
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +41,11 @@ import { ConfigureRoutineComponent } from './components/routines/configure-routi
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      preventDuplicates: true
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RoutinesService } from 'src/app/services/routines.service';
 import { NgForm } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-configure-routine',
@@ -17,7 +18,7 @@ export class ConfigureRoutineComponent implements OnInit {
   sessions: any[] = [];
   schedules: any[] = [];
 
-  constructor(private routineService: RoutinesService) { 
+  constructor(private routineService: RoutinesService, private toastr: ToastrService) { 
     this.routineService.getAllRoutines()
     .subscribe((routines: any[]) => {
       this.routines = routines;
@@ -49,9 +50,6 @@ export class ConfigureRoutineComponent implements OnInit {
   }
 
   save(frmRoutine: NgForm) {
-    console.log(this.selRoutine);
-    console.log(this.selDay);
-    console.log(this.selSession);
 
     var schedule = {
       routine: this.selRoutine,
@@ -61,20 +59,26 @@ export class ConfigureRoutineComponent implements OnInit {
 
     this.routineService.createRoutineSchedule(schedule)
     .subscribe(res => {
-      if(res > 0) {
+      if(res['data'] > 0) {
+        this.toastr.success(res['message']);
         this.getScheduled();
+      }
+      else
+      {
+        this.toastr.error(res['message']);
       }
     },
     error => {
-
+      this.toastr.error('No se pudo agendar');
     });
   }
 
   delete(index, schedule) {
     this.routineService.deleteRoutineSchedule(schedule)
     .subscribe(res => {
-      if(res > 0) {
+      if(res['data'] > 0) {
         this.schedules.splice(index, 1);
+        this.toastr.success('Sesion eliminada');
       }
     },
     error => {
