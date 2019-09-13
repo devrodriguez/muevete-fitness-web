@@ -13,10 +13,14 @@ export class ConfigureRoutineComponent implements OnInit {
   selRoutine: any;
   selDay: any;
   selSession: any;
+  selAvRoutine: any;
+  selAvDay: any;
   routines: any[] = [];
   days: any[] = [];
   sessions: any[] = [];
   schedules: any[] = [];
+  avRoutines: any[];
+  avBaseRoutines: any[];
 
   constructor(private routineService: RoutinesService, private toastr: ToastrService) { 
     this.routineService.getAllRoutines()
@@ -44,6 +48,8 @@ export class ConfigureRoutineComponent implements OnInit {
     });
 
     this.getScheduled();
+
+    this.getAvailableRoutines();
   }
 
   ngOnInit() {
@@ -73,12 +79,16 @@ export class ConfigureRoutineComponent implements OnInit {
     });
   }
 
-  delete(index, schedule) {
+  deleteRoutineSchedule(index, schedule) {
     this.routineService.deleteRoutineSchedule(schedule)
     .subscribe(res => {
       if(res['data'] > 0) {
         this.schedules.splice(index, 1);
         this.toastr.success('Sesion eliminada');
+      }
+      else
+      {
+        this.toastr.success(res['message']);
       }
     },
     error => {
@@ -94,6 +104,67 @@ export class ConfigureRoutineComponent implements OnInit {
     error => {
       console.log(error);
     });
+  }
+
+  getAvailableRoutines() {
+    this.routineService
+    .getRoutineAvailability()
+    .subscribe((res: any[]) => {
+      this.avRoutines = res;
+      this.avBaseRoutines = res;
+    }, error => {
+      console.log(error);
+    })
+  }
+
+  deleteAvailableRoutine(index, avRoutine) {
+    this.routineService
+    .deleteRoutineAvailability(avRoutine)
+    .subscribe(res => {
+      if(res['data'] > 0) {
+        this.avRoutines.splice(index, 1);
+        this.toastr.success('Disponibilidad eliminada');
+      }
+      else
+      {
+        this.toastr.success(res['message']);
+      }
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  avSave(frmDay: NgForm) {
+    var avRoutine = {
+      routine: this.selAvRoutine,
+      day: this.selAvDay
+    };
+
+    this.routineService.createRoutineAvailability(avRoutine)
+    .subscribe(res => {
+      if(res['data']) {
+        this.toastr.success(res['message']);
+        this.getAvailableRoutines();
+      } 
+      else
+      {
+        this.toastr.error(res['message']);
+      }
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  //Events
+  avDaysChange() {
+    this.avRoutines = this.avBaseRoutines.filter(item => {
+      return item['routine_id'] == this.selAvRoutine;
+    });
+  }
+
+  mapInfo(schedule) {
+    this.selRoutine = schedule['routine_id'];
+    this.selDay = schedule['available_day_id'];
   }
 
 }

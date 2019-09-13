@@ -43,4 +43,16 @@ export class RoutinesService {
   createRoutineSchedule(schedule: any) {
     return this.http.post(`${this.appConfig.apiUrl}/routines/schedule/create`, schedule);
   }
+
+  getRoutineAvailability() {
+    return this.http.get(`${this.appConfig.apiUrl}/routines/availableDay`);
+  }
+
+  deleteRoutineAvailability(avRoutine: any) {
+    return this.http.post(`${this.appConfig.apiUrl}/routines/availableDay/remove`, avRoutine);
+  }
+
+  createRoutineAvailability(avRoutine: any) {
+    return this.http.post(`${this.appConfig.apiUrl}/routines/availableDay/create`, avRoutine);
+  }
 }

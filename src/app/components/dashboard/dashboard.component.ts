@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UtilService } from 'src/app/services/util.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  news: any[] = [];
+
+  constructor(private utilService: UtilService) { 
+    this.getNews();
+  }
 
   ngOnInit() {
+  }
+
+  getNews() {
+    this.utilService.getNews()
+    .subscribe(res => {
+      this.news = res['articles'];
+    })
   }
 
 }

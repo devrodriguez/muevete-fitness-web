@@ -9,7 +9,7 @@ import { APP_ROUTING } from './app.routes';
 import { AppComponent } from './app.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faUser, faKey, faSignInAlt, faSave, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faKey, faSignInAlt, faSave, faEdit, faTrash, faAlignJustify } from '@fortawesome/free-solid-svg-icons';
 
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -52,6 +52,6 @@ import { ToastrModule } from 'ngx-toastr';
 })
 export class AppModule { 
   constructor() {
-    library.add(faUser, faKey, faSignInAlt, faSave, faEdit, faTrash);
+    library.add(faUser, faKey, faSignInAlt, faSave, faEdit, faTrash, faAlignJustify);
   }
 }

@@ -1,41 +1,12 @@
 <app-navbar></app-navbar>
 <div class="container mt-3">
-  <div class="row">
-    <div class="col-sm">
-      <div class="card text-white bg-warning">
-        <div class="card-header">News</div>
+  <div class="card-columns">
+    <div class="card" *ngFor="let new of news">
+        <div class="card-header border-heading-card"><h4>{{new.author}}</h4></div>
         <div class="card-body">
-          <div class="card-title">This is a new</div>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <div class="card-title">{{new.title}}</div>
+          <p class="card-text">{{new.description}}</p>
         </div>
       </div>
-    </div>
-    <div class="col-sm">
-      <div class="card text-white bg-info">
-        <div class="card-header">News</div>
-        <div class="card-body">
-          <div class="card-title">This is a new</div>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm">
-      <div class="card text-white bg-danger">
-        <div class="card-header">News</div>
-        <div class="card-body">
-          <div class="card-title">This is a new</div>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm">
-      <div class="card text-white bg-primary">
-        <div class="card-header">News</div>
-        <div class="card-body">
-          <div class="card-title">This is a new</div>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
