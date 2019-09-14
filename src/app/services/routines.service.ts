@@ -55,4 +55,16 @@ export class RoutinesService {
   createRoutineAvailability(avRoutine: any) {
     return this.http.post(`${this.appConfig.apiUrl}/routines/availableDay/create`, avRoutine);
   }
+
+  getRoutineCategory() {
+    return this.http.get(`${this.appConfig.apiUrl}/routines/bycategory`);
+  }
+
+  deleteRoutineCategory(routineCat) {
+    return this.http.post(`${this.appConfig.apiUrl}/routines/bycategory/remove`, routineCat);
+  }
+
+  createRoutineCategory(data) {
+    return this.http.post(`${this.appConfig.apiUrl}/routines/bycategory/create`, data);
+  }
 }

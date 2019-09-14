@@ -7,6 +7,9 @@
     <li class="nav-item">
       <a class="nav-link" id="day-tab" data-toggle="tab" href="#days" role="tab" aria-controls="profile" aria-selected="false">Día de Rutina</a>
     </li>
+    <li class="nav-item">
+      <a class="nav-link" id="bycat-tab" data-toggle="tab" href="#bycat" role="tab" aria-controls="profile" aria-selected="false">Rutinas Por Categoria</a>
+    </li>
   </ul>
   <div class="tab-content" id="routineTabContent">
     <div class="tab-pane fade show active mt-3" id="routines" role="tabpanel" aria-labelledby="routine-tab">
@@ -41,9 +44,9 @@
           <table class="table">
             <thead>
               <tr>
-                <th>Routine</th>
-                <th>Day</th>
-                <th>Hour</th>
+                <th>Rutina</th>
+                <th>Dia</th>
+                <th>Hora</th>
                 <th style="width: 120px"></th>
               </tr>
             </thead>
@@ -91,7 +94,7 @@
             </select>
           </div>
           <div class="col-sm-3">
-            <button type="submit" class="btn btn-success" (click)="avSave(frmDays)">
+            <button type="submit" class="btn btn-success" (click)="avSave()">
               <fa-icon icon="save"></fa-icon>
               Guardar
             </button>
@@ -104,8 +107,8 @@
           <table class="table">
             <thead>
               <tr>
-                <th>Routine</th>
-                <th>Day</th>
+                <th>Rutina</th>
+                <th>Dia</th>
                 <th></th>
               </tr>
             </thead>
@@ -123,6 +126,52 @@
           </table>
         </div>
       </div>
+    </div>
+    <div class="tab-pane fade mt-3" id="bycat" role="tabpanel" aria-labelledby="bycat-tab">
+      <form #frmByCat="ngForm">
+          <div class="row">
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <select name="category" id="category" class="form-control" [(ngModel)]="selCategory">
+                      <option [value]="category.id" *ngFor="let category of categories">{{category.name}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <select name="routineCat" id="routineCat" class="form-control" [(ngModel)]="selRoutineCat">
+                    <option [value]="routine.id" *ngFor="let routine of routines">{{routine.name}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <button type="submit" class="btn btn-success" (click)="createRoutineCategory()">
+                  <fa-icon icon="save"></fa-icon>
+                  Guardar
+                </button>
+              </div>
+          </div>
+      </form>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Categoria</th>
+            <th>Rutina</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let routineCat of routineCats">
+            <td>{{routineCat.category_name}}</td>
+            <td>{{routineCat.routine_name}}</td>
+            <td>
+              <button class="btn btn-outline-danger btn-sm float-right" (click)="deleteRoutineCategory(i, routineCat)">
+                <fa-icon icon="trash"></fa-icon>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

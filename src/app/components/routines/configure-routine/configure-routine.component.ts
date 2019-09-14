@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { RoutinesService } from 'src/app/services/routines.service';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { CategoryService } from 'src/app/services/category.service';
+import { RoutinesService } from 'src/app/services/routines.service';
 
 @Component({
   selector: 'app-configure-routine',
@@ -15,14 +16,18 @@ export class ConfigureRoutineComponent implements OnInit {
   selSession: any;
   selAvRoutine: any;
   selAvDay: any;
+  selCategory: any;
+  selRoutineCat: any;
   routines: any[] = [];
   days: any[] = [];
   sessions: any[] = [];
   schedules: any[] = [];
   avRoutines: any[];
   avBaseRoutines: any[];
+  routineCats: any[];
+  categories: any[];
 
-  constructor(private routineService: RoutinesService, private toastr: ToastrService) { 
+  constructor(private routineService: RoutinesService, private categoryService: CategoryService, private toastr: ToastrService) { 
     this.routineService.getAllRoutines()
     .subscribe((routines: any[]) => {
       this.routines = routines;
@@ -50,6 +55,10 @@ export class ConfigureRoutineComponent implements OnInit {
     this.getScheduled();
 
     this.getAvailableRoutines();
+
+    this.getRoutineCategory();
+
+    this.getCategories();
   }
 
   ngOnInit() {
@@ -71,7 +80,7 @@ export class ConfigureRoutineComponent implements OnInit {
       }
       else
       {
-        this.toastr.error(res['message']);
+        this.toastr.warning(res['message']);
       }
     },
     error => {
@@ -88,7 +97,7 @@ export class ConfigureRoutineComponent implements OnInit {
       }
       else
       {
-        this.toastr.success(res['message']);
+        this.toastr.warning(res['message']);
       }
     },
     error => {
@@ -127,7 +136,7 @@ export class ConfigureRoutineComponent implements OnInit {
       }
       else
       {
-        this.toastr.success(res['message']);
+        this.toastr.warning(res['message']);
       }
     }, error => {
       console.log(error);
@@ -150,6 +159,57 @@ export class ConfigureRoutineComponent implements OnInit {
       {
         this.toastr.error(res['message']);
       }
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  getRoutineCategory() {
+    this.routineService.getRoutineCategory()
+    .subscribe((res: any[]) => {
+      this.routineCats = res;
+    }, error => {
+      console.log(error);
+    })
+  }
+
+  deleteRoutineCategory(index, routineCat) {
+    console.log(routineCat);
+    this.routineService.deleteRoutineCategory(routineCat)
+    .subscribe(res => {
+      /*
+      if(res <= 0) {
+        this.toastr.warning('No se pudo realizar la accion');
+        return;
+      } 
+      */
+      this.getRoutineCategory();
+      this.routineCats.splice(index, 1);
+      this.toastr.success('Accion realizada');
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  createRoutineCategory() {
+    let routineCat = {
+      category_id: this.selCategory,
+      routine_id: this.selRoutineCat
+    };
+
+    this.routineService.createRoutineCategory(routineCat)
+    .subscribe(res => {
+      this.toastr.success('Accion realizada');
+      this.getRoutineCategory();
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  getCategories() {
+    this.categoryService.getCategories()
+    .subscribe((res: any[]) => {
+      this.categories = res;
     }, error => {
       console.log(error);
     });
