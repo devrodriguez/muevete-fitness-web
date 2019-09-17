@@ -143,7 +143,7 @@ export class ConfigureRoutineComponent implements OnInit {
     });
   }
 
-  avSave(frmDay: NgForm) {
+  avSave() {
     var avRoutine = {
       routine: this.selAvRoutine,
       day: this.selAvDay
