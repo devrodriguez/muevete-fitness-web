@@ -4,8 +4,6 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
-import { APP_ROUTING } from './app.routes';
-
 import { AppComponent } from './app.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -23,6 +21,8 @@ import { ConfigureRoutineComponent } from './components/routines/configure-routi
 // Toastr
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,8 @@ import { ToastrModule } from 'ngx-toastr';
     ConfigureRoutineComponent
   ],
   imports: [
-    APP_ROUTING,
+    //APP_ROUTING,
+    AppRoutingModule,
     BrowserModule,
     HttpClientModule,
     FormsModule,
@@ -45,7 +46,8 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       preventDuplicates: true
-    })
+    }),
+    ModalModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

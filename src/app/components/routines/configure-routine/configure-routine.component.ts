@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { CategoryService } from 'src/app/services/category.service';
 import { RoutinesService } from 'src/app/services/routines.service';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-configure-routine',
@@ -11,13 +12,17 @@ import { RoutinesService } from 'src/app/services/routines.service';
 })
 export class ConfigureRoutineComponent implements OnInit {
 
-  selRoutine: any;
-  selDay: any;
-  selSession: any;
-  selAvRoutine: any;
-  selAvDay: any;
-  selCategory: any;
-  selRoutineCat: any;
+  modalRef: BsModalRef;
+
+  rowIndex: any;
+  rowSchedule: any;
+  selRoutine: any = -1;
+  selDay: any = -1;
+  selSession: any = -1;
+  selAvRoutine: any = -1;
+  selAvDay: any = -1;
+  selCategory: any = -1;
+  selRoutineCat: any = -1;
   routines: any[] = [];
   days: any[] = [];
   sessions: any[] = [];
@@ -27,7 +32,11 @@ export class ConfigureRoutineComponent implements OnInit {
   routineCats: any[];
   categories: any[];
 
-  constructor(private routineService: RoutinesService, private categoryService: CategoryService, private toastr: ToastrService) { 
+  constructor(private routineService: RoutinesService, 
+    private categoryService: CategoryService, 
+    private toastr: ToastrService,
+    private modalService: BsModalService) { 
+
     this.routineService.getAllRoutines()
     .subscribe((routines: any[]) => {
       this.routines = routines;
@@ -88,21 +97,30 @@ export class ConfigureRoutineComponent implements OnInit {
     });
   }
 
-  deleteRoutineSchedule(index, schedule) {
-    this.routineService.deleteRoutineSchedule(schedule)
+  deleteRoutineSchedule() {
+    this.routineService.deleteRoutineSchedule(this.rowSchedule)
     .subscribe(res => {
       if(res['data'] > 0) {
-        this.schedules.splice(index, 1);
+        this.schedules.splice(this.rowIndex, 1);
         this.toastr.success('Sesion eliminada');
       }
       else
       {
         this.toastr.warning(res['message']);
       }
+      this.modalRef.hide();
     },
     error => {
       console.log(error)
+      this.modalRef.hide();
     });
+  }
+
+  openModalConfirm(template: TemplateRef<any>, index, schedule) {
+    this.rowIndex = index;
+    this.rowSchedule = schedule;
+
+    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
   }
 
   getScheduled() {
@@ -227,4 +245,7 @@ export class ConfigureRoutineComponent implements OnInit {
     this.selDay = schedule['available_day_id'];
   }
 
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
+  }
 }

@@ -17,17 +17,20 @@
         <div class="row">
           <div class="col-sm-3">
             <select name="routine" id="routine" class="form-control" [(ngModel)]="selRoutine">
+              <option value="-1">- Rutinas -</option>
               <option [value]="routine.id" *ngFor="let routine of routines">{{routine.name}}</option>
             </select>
           </div>
           <div class="col-sm-3">
             <select name="day" id="day" class="form-control" [(ngModel)]="selDay">
-                <option [value]="day.id" *ngFor="let day of days">{{day.name}}</option>
+              <option value="-1">- Dias -</option>
+              <option [value]="day.id" *ngFor="let day of days">{{day.name}}</option>
             </select>
           </div>
           <div class="col-sm-3">
             <select name="hour" id="hour" class="form-control" [(ngModel)]="selSession">
-                <option [value]="session.id" *ngFor="let session of sessions">{{session.name}} {{session.period}}</option>
+              <option value="-1">- Sesiones -</option>
+              <option [value]="session.id" *ngFor="let session of sessions">{{session.name}} {{session.period}}</option>
             </select>
           </div>
           <div class="col-sm-3">
@@ -66,7 +69,7 @@
                     <fa-icon icon="edit"></fa-icon>
                   </button>
                   &nbsp;
-                  <button class="btn btn-outline-danger btn-sm float-right" (click)="deleteRoutineSchedule(i, schedule)">
+                  <button class="btn btn-outline-danger btn-sm float-right" (click)="openModalConfirm(template, i, schedule)">
                     <fa-icon icon="trash"></fa-icon>
                   </button>
                   &nbsp;
@@ -85,12 +88,14 @@
         <div class="row">
           <div class="col-sm-3">
             <select name="day-routine" id="day-routine" class="form-control" [(ngModel)]="selAvRoutine">
+              <option value="-1">- Rutinas -</option>
               <option [value]="routine.id" *ngFor="let routine of routines">{{routine.name}}</option>
             </select>
           </div>
           <div class="col-sm-3">
             <select name="av-day" id="av-day" class="form-control" [(ngModel)]="selAvDay">
-                <option [value]="day.id" *ngFor="let day of days">{{day.name}}</option>
+              <option value="-1">- Dias -</option>
+              <option [value]="day.id" *ngFor="let day of days">{{day.name}}</option>
             </select>
           </div>
           <div class="col-sm-3">
@@ -133,13 +138,15 @@
               <div class="col-sm-3">
                 <div class="form-group">
                   <select name="category" id="category" class="form-control" [(ngModel)]="selCategory">
-                      <option [value]="category.id" *ngFor="let category of categories">{{category.name}}</option>
+                    <option value="-1">- Categorias -</option>
+                    <option [value]="category.id" *ngFor="let category of categories">{{category.name}}</option>
                   </select>
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="form-group">
                   <select name="routineCat" id="routineCat" class="form-control" [(ngModel)]="selRoutineCat">
+                    <option value="-1">- Rutinas -</option>
                     <option [value]="routine.id" *ngFor="let routine of routines">{{routine.name}}</option>
                   </select>
                 </div>
@@ -174,4 +181,13 @@
       </table>
     </div>
   </div>
+
+  <!-- Modal -->
+  <ng-template #template>
+    <div class="modal-body text-center">
+      <p>Desea eliminar esta sesion?</p>
+      <button type="button" class="btn btn-default" (click)="deleteRoutineSchedule()">Yes</button>
+      <button type="button" class="btn btn-primary" (click)="modalRef.hide()" >No</button>
+    </div>
+  </ng-template>
 </div>
