@@ -12,7 +12,7 @@ export class RoutinesComponent implements OnInit {
   schedules: any = [];
   routines: any = [];
   selectedRoutine: number = 0;
-  selectedDate: string = moment().format('YYYY-MM-DD');
+  selectedDate: any = new Date();
 
   constructor(private routineService: RoutinesService) { }
 
@@ -28,8 +28,9 @@ export class RoutinesComponent implements OnInit {
   }
 
   getScheduled() {
-    //Get routines scheduled
-    this.routineService.getScheduled(this.selectedRoutine, this.selectedDate).subscribe(data => {
+    let dateFormated = moment(this.selectedDate).format('DD/MM/YYYY');
+    this.routineService.getScheduled(this.selectedRoutine, dateFormated)
+    .subscribe(data => {
       this.schedules = data;
     });
   }
@@ -38,7 +39,8 @@ export class RoutinesComponent implements OnInit {
     this.getScheduled();
   }
 
-  dateChange() {
+  dateChange(date: Date) {
+    this.selectedDate = date;
     this.getScheduled();
   }
 

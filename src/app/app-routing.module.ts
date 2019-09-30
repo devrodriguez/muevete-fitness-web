@@ -9,14 +9,35 @@ import { RoutinesComponent } from './components/routines/routines.component';
 import { ConfigureRoutineComponent } from './components/routines/configure-routine/configure-routine.component';
 
 const APP_ROUTES: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'forgotten', component: ForgottenComponent },
-  { path: 'home', component: DashboardComponent },
-  { path: 'products', component: ProductsComponent },
-  { path: 'trainers', component: TrainersComponent },
-  { path: 'routines', component: RoutinesComponent },
-  { path: 'configure-routine', component: ConfigureRoutineComponent },
-  { path: '**', pathMatch: 'full', redirectTo: 'login' }
+  {
+    path: 'auth',
+    loadChildren: './components/auth.module#AuthModule'
+  },
+  { 
+    path: 'home', 
+    component: DashboardComponent 
+  },
+  { 
+    path: 'products', 
+    component: ProductsComponent 
+  },
+  { 
+    path: 'trainers', 
+    component: TrainersComponent 
+  },
+  { 
+    path: 'routines', 
+    component: RoutinesComponent
+  },
+  { 
+    path: 'configure-routine', 
+    component: ConfigureRoutineComponent
+  },
+  { 
+    path: '**', 
+    pathMatch: 'full', 
+    redirectTo: 'auth/login' 
+  }
 ];
 
 @NgModule({

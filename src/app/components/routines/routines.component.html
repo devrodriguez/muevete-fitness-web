@@ -8,7 +8,23 @@
       </select>
     </div>
     <div class="col-sm-3">
-      <input type="date" name="date" id="date" class="form-control" [(ngModel)]="selectedDate" (change)="dateChange()" >
+      <div class="form-group">
+        <div class="input-group">
+          <input type="text"
+                  #dp="bsDatepicker"
+                  placeholder="Datepicker"
+                  class="form-control"
+                  [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY', isAnimated: true }"
+                  [(ngModel)]="selectedDate"
+                  (bsValueChange)="dateChange($event)"
+                  bsDatepicker>
+          <div class="input-group-append">
+            <button class="btn btn-outline-primary" (click)="dp.toggle()" type="button">
+                <fa-icon icon="calendar"></fa-icon>
+              </button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <hr>

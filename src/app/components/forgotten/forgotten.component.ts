@@ -24,7 +24,7 @@ export class ForgottenComponent implements OnInit {
 
     this.loginService.passwordForgotten(user)
     .subscribe(res => {
-      this.router.navigateByUrl('login');
+      this.router.navigateByUrl('auth', { replaceUrl: true });
     }, error => {
       console.log(error);
     })

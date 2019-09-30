@@ -25,3 +25,11 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## To Angular 8 
+Repository is not clean.  Please commit or stash any changes before updating.
+Use: --allow-dirty
+
+The package/collection may not support the 'targets' field within 'C:\swprojects\muevete-fitness-web\angular.json'. This can be corrected by renaming the following 'targets' fields to 'architect'
+
+https://webintegral.com.co/blog/como-actualizar-angular-a-lo-bestia/
