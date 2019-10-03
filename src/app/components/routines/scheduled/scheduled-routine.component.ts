@@ -3,11 +3,11 @@ import { RoutinesService } from 'src/app/services/routines.service';
 import * as moment from 'moment';
 
 @Component({
-  selector: 'app-routines',
-  templateUrl: './routines.component.html',
-  styleUrls: ['./routines.component.css']
+  selector: 'app-scheduled-routine',
+  templateUrl: './scheduled-routine.component.html',
+  styleUrls: ['./scheduled-routine.component.css']
 })
-export class RoutinesComponent implements OnInit {
+export class ScheduledRoutineComponent implements OnInit {
 
   schedules: any = [];
   routines: any = [];

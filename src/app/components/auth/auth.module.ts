@@ -15,6 +15,8 @@ import {
   faKey, 
   faSignInAlt
 } from '@fortawesome/free-solid-svg-icons';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { NavbarModule } from '../navbar/navbar.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import {
     CommonModule,
     FormsModule,
     FontAwesomeModule,
-    AuthRoutingModule
+    AuthRoutingModule,
+    NavbarModule
   ]
 })
 export class AuthModule { 
