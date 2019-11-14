@@ -37,36 +37,12 @@ export class ConfigureRoutineComponent implements OnInit {
     private toastr: ToastrService,
     private modalService: BsModalService) { 
 
-    this.routineService.getAllRoutines()
-    .subscribe((routines: any[]) => {
-      this.routines = routines;
-    },
-    error => {
-      console.log(error);
-    });
-
-    this.routineService.getAvailableDays()
-    .subscribe((days: any[]) => {
-      this.days = days;
-    },
-    error => {
-      console.log(error);
-    });
-
-    this.routineService.getAllSessions()
-    .subscribe((sessions: any[]) => {
-      this.sessions = sessions;
-    },
-    error => {
-      console.log(error);
-    });
-
+    this.getRoutineList();
+    this.getDaysList();
+    this.getSessionList();
     this.getScheduled();
-
     this.getAvailableRoutines();
-
     this.getRoutineCategory();
-
     this.getCategories();
   }
 
@@ -144,6 +120,36 @@ export class ConfigureRoutineComponent implements OnInit {
     })
   }
 
+  getSessionList() {
+    this.routineService.getAllSessions()
+    .subscribe((sessions: any[]) => {
+      this.sessions = sessions;
+    },
+    error => {
+      console.log(error);
+    });
+  }
+
+  getDaysList() {
+    this.routineService.getAvailableDays()
+    .subscribe((days: any[]) => {
+      this.days = days;
+    },
+    error => {
+      console.log(error);
+    });
+  }
+
+  getRoutineList() {
+    this.routineService.getAllRoutines()
+    .subscribe((routines: any[]) => {
+      this.routines = routines;
+    },
+    error => {
+      console.log(error);
+    });
+  }
+
   deleteAvailableRoutine(index, avRoutine) {
     this.routineService
     .deleteRoutineAvailability(avRoutine)
@@ -161,7 +167,7 @@ export class ConfigureRoutineComponent implements OnInit {
     });
   }
 
-  avSave() {
+  saveAvailable() {
     var avRoutine = {
       routine: this.selAvRoutine,
       day: this.selAvDay

@@ -83,6 +83,7 @@
         </div>
       </div>
     </div>
+    <!-- Routine Days -->
     <div class="tab-pane fade mt-3" id="days" role="tabpanel" aria-labelledby="day-tab">
       <form #frmDays="ngForm">
         <div class="row">
@@ -99,7 +100,7 @@
             </select>
           </div>
           <div class="col-sm-3">
-            <button type="submit" class="btn btn-success" (click)="avSave()">
+            <button type="submit" class="btn btn-success" (click)="saveAvailable()">
               <fa-icon icon="save"></fa-icon>
               Guardar
             </button>

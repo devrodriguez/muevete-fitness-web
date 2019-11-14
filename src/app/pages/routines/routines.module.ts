@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { RoutinesRoutingModule } from './routines-routing.module';
 import { ConfigureRoutineComponent } from './configure/configure-routine.component';
 import { ScheduledRoutineComponent } from './scheduled/scheduled-routine.component';
-import { NavbarModule } from '../navbar/navbar.module';
+import { NavbarModule } from 'src/app/components/navbar/navbar.module';
 
 //Fonts Awsome
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';

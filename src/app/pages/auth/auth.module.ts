@@ -15,8 +15,9 @@ import {
   faKey, 
   faSignInAlt
 } from '@fortawesome/free-solid-svg-icons';
-import { NavbarComponent } from '../navbar/navbar.component';
-import { NavbarModule } from '../navbar/navbar.module';
+import { NavbarModule } from 'src/app/components/navbar/navbar.module';
+
+
 
 @NgModule({
   declarations: [

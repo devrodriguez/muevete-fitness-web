@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { ProductsComponent } from './components/products/products.component';
-import { TrainersComponent } from './components/trainers/trainers.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { TrainersComponent } from './pages/trainers/trainers.component';
+import { ProductsComponent } from './pages/products/sale/products.component';
 
 const APP_ROUTES: Routes = [
   {
     path: 'auth',
-    loadChildren: () => import('./components/auth/auth.module').then(mod => mod.AuthModule)
+    loadChildren: () => import('./pages/auth/auth.module').then(mod => mod.AuthModule)
   },
   {
     path: 'routine',
-    loadChildren: () => import('./components/routines/routines.module').then(mod => mod.RoutinesModule)
+    loadChildren: () => import('./pages/routines/routines.module').then(mod => mod.RoutinesModule)
   },
   { 
     path: 'home', 
@@ -19,7 +19,7 @@ const APP_ROUTES: Routes = [
   },
   { 
     path: 'products', 
-    component: ProductsComponent 
+    loadChildren: () => import('./pages/products/products.module').then(mod => mod.ProductsModule)
   },
   { 
     path: 'trainers', 
